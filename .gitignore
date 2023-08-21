@@ -1,0 +1,12 @@
+*
+!*/
+!.gitignore
+
+!Assets/README.txt
+!./README.md
+
+!Assets/Scripts/**
+!Assets/Tests/**
+
+**/*.asmdef
+**/*.meta
