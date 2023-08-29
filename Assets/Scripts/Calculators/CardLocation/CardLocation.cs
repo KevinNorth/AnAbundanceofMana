@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace KitTraden.AnAbundanceOfMana.Calculators.CardLocation
 {
@@ -14,6 +16,11 @@ namespace KitTraden.AnAbundanceOfMana.Calculators.CardLocation
             SPENT_POWERS_PILE,
             NONE
         }
+
+        public readonly static IReadOnlyList<LocationType> AllPileLocations =
+                Enum.GetValues(typeof(LocationType))
+                    .Cast<LocationType>()
+                    .Except(new LocationType[] { LocationType.NONE }).ToList();
 
         public LocationType location;
         public int index;

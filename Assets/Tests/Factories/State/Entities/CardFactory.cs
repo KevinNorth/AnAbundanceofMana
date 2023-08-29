@@ -1,12 +1,13 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 using KitTraden.AnAbundanceOfMana.Effects.CardEffects;
 using KitTraden.AnAbundanceOfMana.State.Entities;
 using CardModel = KitTraden.AnAbundanceOfMana.MVC.Models.Cards.Card;
 
-namespace KitTraden.AnAbundanceOfMana.Tests.Fixtures.State.Entities
+namespace KitTraden.AnAbundanceOfMana.Tests.Factories.State.Entities
 {
-    public class CardFixtures
+    public class CardFactory
     {
         private static int NUM_CARDS_CREATED = 0;
 
@@ -43,6 +44,16 @@ namespace KitTraden.AnAbundanceOfMana.Tests.Fixtures.State.Entities
             NUM_CARDS_CREATED++;
 
             return card;
+        }
+
+        public static Card CopyCard(Card card)
+        {
+            return new Card(card, copyGUID: true);
+        }
+
+        public static List<Card> CopyCards(List<Card> cards)
+        {
+            return cards.Select((card) => CopyCard(card)).ToList();
         }
     }
 }

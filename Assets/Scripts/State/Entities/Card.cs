@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using KitTraden.AnAbundanceOfMana.Effects.CardEffects;
@@ -8,7 +7,7 @@ using CardModel = KitTraden.AnAbundanceOfMana.MVC.Models.Cards.Card;
 namespace KitTraden.AnAbundanceOfMana.State.Entities
 {
     [Serializable]
-    public class Card : IEquatable<Card>, IEqualityComparer<Card>
+    public class Card : IEquatable<Card>
     {
         public enum CardType
         {
@@ -104,16 +103,6 @@ namespace KitTraden.AnAbundanceOfMana.State.Entities
         public bool Equals(Card other)
         {
             return UUID == other.UUID;
-        }
-
-        public bool Equals(Card x, Card y)
-        {
-            return x.UUID == y.UUID;
-        }
-
-        public int GetHashCode(Card obj)
-        {
-            return UUID.GetHashCode();
         }
     }
 }

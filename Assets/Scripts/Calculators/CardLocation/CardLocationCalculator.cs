@@ -18,39 +18,39 @@ namespace KitTraden.AnAbundanceOfMana.Calculators.CardLocation
             // to cause noticable lag on slower devices.
             var previousStateLocations = new List<(CardLocation.LocationType, HashSet<Card>, Dictionary<Card, int>)>
             {
-                (CardLocation.LocationType.COMBO, new HashSet<Card>(previousState.Combo), CalculateCardPositions(previousState.Combo)),
-                (CardLocation.LocationType.DECK, new HashSet<Card>(previousState.Deck), CalculateCardPositions(previousState.Deck)),
-                (CardLocation.LocationType.DISCARD_PILE, new HashSet<Card>(previousState.DiscardPile), CalculateCardPositions(previousState.DiscardPile)),
-                (CardLocation.LocationType.EXHAUST_PILE, new HashSet<Card>(previousState.ExhaustPile), CalculateCardPositions(previousState.ExhaustPile)),
-                (CardLocation.LocationType.HAND, new HashSet<Card>(previousState.Hand), CalculateCardPositions(previousState.Hand)),
-                (CardLocation.LocationType.SPENT_POWERS_PILE, new HashSet<Card>(previousState.SpentPowerPile), CalculateCardPositions(previousState.SpentPowerPile))
+                (CardLocation.LocationType.COMBO, new HashSet<Card>(previousState.Combo, UUIDCardEqualityComparer.INSTANCE), CalculateCardPositions(previousState.Combo)),
+                (CardLocation.LocationType.DECK, new HashSet<Card>(previousState.Deck, UUIDCardEqualityComparer.INSTANCE), CalculateCardPositions(previousState.Deck)),
+                (CardLocation.LocationType.DISCARD_PILE, new HashSet<Card>(previousState.DiscardPile, UUIDCardEqualityComparer.INSTANCE), CalculateCardPositions(previousState.DiscardPile)),
+                (CardLocation.LocationType.EXHAUST_PILE, new HashSet<Card>(previousState.ExhaustPile, UUIDCardEqualityComparer.INSTANCE), CalculateCardPositions(previousState.ExhaustPile)),
+                (CardLocation.LocationType.HAND, new HashSet<Card>(previousState.Hand, UUIDCardEqualityComparer.INSTANCE), CalculateCardPositions(previousState.Hand)),
+                (CardLocation.LocationType.SPENT_POWERS_PILE, new HashSet<Card>(previousState.SpentPowerPile, UUIDCardEqualityComparer.INSTANCE), CalculateCardPositions(previousState.SpentPowerPile))
             };
 
-            var allCardsInPreviousState = new HashSet<Card>();
-            allCardsInPreviousState.UnionWith(currentState.Combo);
-            allCardsInPreviousState.UnionWith(currentState.Deck);
-            allCardsInPreviousState.UnionWith(currentState.DiscardPile);
-            allCardsInPreviousState.UnionWith(currentState.ExhaustPile);
-            allCardsInPreviousState.UnionWith(currentState.Hand);
-            allCardsInPreviousState.UnionWith(currentState.SpentPowerPile);
+            var allCardsInPreviousState = new HashSet<Card>(UUIDCardEqualityComparer.INSTANCE);
+            allCardsInPreviousState.UnionWith(previousState.Combo);
+            allCardsInPreviousState.UnionWith(previousState.Deck);
+            allCardsInPreviousState.UnionWith(previousState.DiscardPile);
+            allCardsInPreviousState.UnionWith(previousState.ExhaustPile);
+            allCardsInPreviousState.UnionWith(previousState.Hand);
+            allCardsInPreviousState.UnionWith(previousState.SpentPowerPile);
 
             var currentStateLocations = new List<(CardLocation.LocationType, HashSet<Card>, Dictionary<Card, int>)>
             {
-                (CardLocation.LocationType.COMBO, new HashSet<Card>(currentState.Combo), CalculateCardPositions(currentState.Combo)),
-                (CardLocation.LocationType.DECK, new HashSet<Card>(currentState.Deck), CalculateCardPositions(currentState.Deck)),
-                (CardLocation.LocationType.DISCARD_PILE, new HashSet<Card>(currentState.DiscardPile), CalculateCardPositions(currentState.DiscardPile)),
-                (CardLocation.LocationType.EXHAUST_PILE, new HashSet<Card>(currentState.ExhaustPile), CalculateCardPositions(currentState.ExhaustPile)),
-                (CardLocation.LocationType.HAND, new HashSet<Card>(currentState.Hand), CalculateCardPositions(currentState.Hand)),
-                (CardLocation.LocationType.SPENT_POWERS_PILE, new HashSet<Card>(currentState.SpentPowerPile), CalculateCardPositions(currentState.SpentPowerPile))
+                (CardLocation.LocationType.COMBO, new HashSet<Card>(currentState.Combo, UUIDCardEqualityComparer.INSTANCE), CalculateCardPositions(currentState.Combo)),
+                (CardLocation.LocationType.DECK, new HashSet<Card>(currentState.Deck, UUIDCardEqualityComparer.INSTANCE), CalculateCardPositions(currentState.Deck)),
+                (CardLocation.LocationType.DISCARD_PILE, new HashSet<Card>(currentState.DiscardPile, UUIDCardEqualityComparer.INSTANCE), CalculateCardPositions(currentState.DiscardPile)),
+                (CardLocation.LocationType.EXHAUST_PILE, new HashSet<Card>(currentState.ExhaustPile, UUIDCardEqualityComparer.INSTANCE), CalculateCardPositions(currentState.ExhaustPile)),
+                (CardLocation.LocationType.HAND, new HashSet<Card>(currentState.Hand, UUIDCardEqualityComparer.INSTANCE), CalculateCardPositions(currentState.Hand)),
+                (CardLocation.LocationType.SPENT_POWERS_PILE, new HashSet<Card>(currentState.SpentPowerPile, UUIDCardEqualityComparer.INSTANCE), CalculateCardPositions(currentState.SpentPowerPile))
             };
 
-            var allCardsInCurrentState = new HashSet<Card>();
-            allCardsInCurrentState.UnionWith(previousState.Combo);
-            allCardsInCurrentState.UnionWith(previousState.Deck);
-            allCardsInCurrentState.UnionWith(previousState.DiscardPile);
-            allCardsInCurrentState.UnionWith(previousState.ExhaustPile);
-            allCardsInCurrentState.UnionWith(previousState.Hand);
-            allCardsInCurrentState.UnionWith(previousState.SpentPowerPile);
+            var allCardsInCurrentState = new HashSet<Card>(UUIDCardEqualityComparer.INSTANCE);
+            allCardsInCurrentState.UnionWith(currentState.Combo);
+            allCardsInCurrentState.UnionWith(currentState.Deck);
+            allCardsInCurrentState.UnionWith(currentState.DiscardPile);
+            allCardsInCurrentState.UnionWith(currentState.ExhaustPile);
+            allCardsInCurrentState.UnionWith(currentState.Hand);
+            allCardsInCurrentState.UnionWith(currentState.SpentPowerPile);
 
             // This gets all of the cards that existed in the previous state and have either
             // been removed from the current state or moved to a new location in the current state
